@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="William Yang">
+    <meta name="description" content="Forms to create tabletop games">
+    <title>Module 1.4</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+    <style>
+    .gameSummary {
+      margin-bottom: 15px;
+      vertical-align: bottom;
+      border: solid lightgrey 1px;
+      padding: 5px; text-align: center; }
+    .summaryTitle { display: block; height: 40px; }
+    .summaryInfo { display: block; height: 60px; }
+    </style>
+</head>
+<body>
+    
+    <div class='container'>
+        <div class='row'>      
+          <div class='page-header'>
+            <h1>MyGame Game Browser <small>Click on a game below for more information.</small></h1>
+          </div>
+        </div>
+  
+  
+    <div class="row" id='gameGrid'>
+    </div> <!-- row -->
+        
+    </div> <!-- /container -->
+
+    <div class="modal fade" id="detailsModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Game Details</h4>
+            </div>
+            <div class="modal-body">
+            
+                <!-- Details for the recently clicked movie -->
+                <ul>
+                <li>ID: <span id="gameID" /></li> <!-- self-closing span tag -->
+                <li>Name: <span id="gameName"/ ></li>
+                <li>Year: <span id="gameYear" /></li>
+                <li>Rating: <span id="gameRating" /></li>
+                <li>Minimum Player Count: <span id="gameMinPC" /></li>
+                <li>Maximum Player Count: <span id="gameMaxPC" /></li>
+                <li>Minimum Playtime: <span id="gameMinPT" /></li>
+                <li>Maximum Playtime: <span id="gameMaxPT" /></li>
+                <li>Minimum Age: <span id="gameMinAge" /></li>
+                <li>Designer: <span id="gameDesigner" /></li>
+                <li>Artist: <span id="gameArtist" /></li>
+                <li>Publisher: <span id="gamePublisher" /></li>
+                </ul>
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            </div>
+        </div>
+        </div>
+
+    <!-- Container holding the forms to create a tabletop game -->
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                
+                <!-- Page header -->
+                <div class="page-header">
+                  <h1>Tabletop Games <small>Making games manually or with JSON</small></h1>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Form to create games using JSON -->
+        <form id="jsonForm" name="jsonForm" role="form">
+            <legend>Create a Tabletop game with JSON</legend>
+        
+            <!-- JSON input field -->
+            <div class="form-group">
+                <label for="gameJSON" class="sr-only">JSON</label>
+                <input type="text" class="form-control" id="json" name="json" placeholder="Paste JSON here">
+            </div>
+
+            <!-- Submit or reset the form -->
+            <button type="submit" class="btn btn-primary">Create Game</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
+        </form>
+
+        <br>
+        
+        <!-- Form to create game manually by filling in multiple input fields -->
+        <!-- <form action="makeGame.php" method="post" id="manualForm" name="manualForm" role="form"> -->
+        <form id="manualForm" name="manualForm" role="form">
+            <legend>Create a Tabletop game manually</legend>
+        
+            <!-- Game ID Input Field -->
+            <div class="form-group">
+                <label for="gameID">ID</label>
+                <input type="number" class="form-control" id="id" name="id" placeholder="Enter ID">
+                <p>ex) 123, 7466, etc.</p>
+            </div>
+
+            <!-- 
+                Game Name Input Field -->
+            <div class="form-group">
+                <label for="gameName">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            </div>
+
+            <!-- Published Year Input Field -->
+            <div class="form-group">
+                <label for="gameYear">Published Year*</label>
+                <input type="number" class="form-control" id="year" name="year" placeholder="From 1990 to 2018">
+                <p>*MUST be between 1990 - 2018</p>
+            </div>
+
+            <!-- Game Rating Input Field -->
+            <div class="form-group">
+                <label for="gameRating">Rating**</label>
+                <input type="number" step="0.1" class="form-control" id="rating" name="rating" placeholder="Rating">
+                <p>**MUST be between 0 - 10 <br> ex) 5.3, 7, 8.9</p>
+            </div>
+            
+            <!-- Game's Minimum Number of Required Players Input Field -->
+            <div class="form-group">
+                <label for="gameMinPlayers">Minimum Amount of Players</label>
+                <input type="number" class="form-control" id="minPlayerCount" name="minPlayerCount" placeholder="Minimum players">
+            </div>
+            
+            <!-- Game's Maximum Number of Required Players Input Field -->
+            <div class="form-group">
+                <label for="gameMaxPlayers">Maximum Amount of Players</label>
+                <input type="number" class="form-control" id="maxPlayerCount" name="maxPlayerCount" placeholder="Maximum players">
+            </div>
+
+            <!-- Game's Minimum Playtime Input Field -->
+            <div class="form-group">
+                <label for="gameMinTime">Minimum Amount of Playtime (in minutes)</label>
+                <input type="number" class="form-control" id="minPlaytime" name="minPlaytime" placeholder="Minimum playtime">
+            </div>
+
+            <!-- Game's Maximum Playtime Input Field -->
+            <div class="form-group">
+                <label for="gameMaxTime">Maximum Amount of Playtime (in minutes)</label>
+                <input type="number" class="form-control" id="maxPlaytime" name="maxPlaytime" placeholder="Maximum playtime">
+            </div>
+
+            <!-- Game's Minimum Age Requirement Input Field -->
+            <div class="form-group">
+                <label for="gameMinAge">Suggested Minimim Age***</label>
+                <input type="number" class="form-control" id="minAge" name="minAge" placeholder="Minimum Age">
+                <p>***MUST be at least 6 years greater</p>
+            </div>
+
+            <!-- Game Designer Input Field -->
+            <div class="form-group">
+                <label for="gameDesigner">Designer</label>
+                <input type="text" class="form-control" id="designer" name="designer" placeholder="Designer">
+            </div>
+
+            <!-- Game Artist Input Field -->
+            <div class="form-group">
+                <label for="gameArtist">Artist</label>
+                <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist">
+            </div>
+
+            <!-- Game Publisher Input Field -->
+            <div class="form-group">
+                <label for="gamePublisher">Publisher</label>
+                <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Publisher">
+            </div>
+        
+            <!-- Submit or reset the form -->
+            <button type="submit" class="btn btn-primary">Create Game</button>
+            <button type="reset" class="btn btn-primary">Reset</button>
+        </form>
+        
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Game Form Script -->
+    <script type="module" src="gameForm.js"></script>
+</body>
+</html>
