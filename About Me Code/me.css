@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* selector */
+body {
+	background:no-repeat;
+	background-size:cover;
+	background-image:url(https://wallpaperbrowse.com/media/images/free-photo-background-952.jpg) }
+
+/* classes */
+.colorWhite {
+	background:#F8F8FF;
+	border-color:#000000 }
+.center { text-align:center; }
